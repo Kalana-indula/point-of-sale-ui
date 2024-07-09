@@ -22,7 +22,7 @@ const Checkout = () => {
             products:productIds
         };
 
-        const response=await axios.post(`${process.env.POS_BACKEND_URL}/orders`,data);
+        const response=await axios.post(`https://point-of-sale-system-production.up.railway.app/orders`,data);
         console.log(response);
         if(response.status ===201){
             setOrderProducts([]);

@@ -9,7 +9,7 @@ const Navbar = () => {
 
 
     const getCategories = async () => {
-        const response = await axios.get(`${process.env.POS_BACKEND_URL}/categories`);
+        const response = await axios.get(`https://point-of-sale-system-production.up.railway.app/categories`);
         setCategories(response.data);
         console.log(response.data);
     };

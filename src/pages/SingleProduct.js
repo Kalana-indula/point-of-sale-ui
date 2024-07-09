@@ -13,7 +13,7 @@ const SingleProduct = () => {
     const {addToCart}=useContext(CartContext);
 
     const getProductById = async () => {
-        const response = await axios.get(`${process.env.POS_BACKEND_URL}/products/${id}`);
+        const response = await axios.get(`https://point-of-sale-system-production.up.railway.app/products/${id}`);
         setProduct(response.data);
         console.log(response.data);
     }

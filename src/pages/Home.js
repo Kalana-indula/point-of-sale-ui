@@ -7,7 +7,7 @@ const Products = () => {
     const [products, setProducts] = useState(null);
 
     const getProducts = async () => {
-        const response = await axios.get(`${process.env.POS_BACKEND_URL}/products`);
+        const response = await axios.get(`https://point-of-sale-system-production.up.railway.app/products`);
         console.log(response.data);
         setProducts(response.data);
     }
