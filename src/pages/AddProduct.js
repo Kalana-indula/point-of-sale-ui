@@ -71,43 +71,43 @@ const AddProduct = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-lg-6 col-sm-12">
-                <div className="form-header">
-                    <h1 className="display-6">Add New Product</h1>
+                        <div className="form-header">
+                            <h1 className="display-6">Add New Product</h1>
+                        </div>
+
+                        <div className="form-body">
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label for="formGroupExampleInput" className="form-label">Product Name</label>
+                                    <input type="text" required className="form-control" onChange={handleName} value={name} placeholder="Enter product name" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="formGroupExampleInput2" className="form-label">Price</label>
+                                    <input type="text" required className="form-control" onChange={handlePrice} value={price} placeholder="Enter product price" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="formGroupExampleInput" className="form-label">Quantity</label>
+                                    <input type="text" required className="form-control" onChange={handleQty} value={qty} placeholder="Enter product quantity" />
+                                </div>
+                                <div className="drop-down">
+                                    <label for="formGroupExampleInput" className="form-label">Category</label>
+                                    <select required className="form-select" onChange={handleCategory} aria-label="Default select example">
+                                        <option selected>Select a category</option>
+                                        {categories && categories.map((category) => (
+                                            <option key={category.id} value={category.id}>{category.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="submit-button">
+                                    <button type="submit" className="btn btn-primary">Save Product</button>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="form-body">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label for="formGroupExampleInput" className="form-label">Product Name</label>
-                            <input type="text" required className="form-control" onChange={handleName} placeholder="Enter product name" />
-                        </div>
-                        <div className="mb-3">
-                            <label for="formGroupExampleInput2" className="form-label">Price</label>
-                            <input type="text" required className="form-control" onChange={handlePrice} placeholder="Enter product price" />
-                        </div>
-                        <div className="mb-3">
-                            <label for="formGroupExampleInput" className="form-label">Quantity</label>
-                            <input type="text" required className="form-control" onChange={handleQty} placeholder="Enter product quantity" />
-                        </div>
-                        <div className="drop-down">
-                            <label for="formGroupExampleInput" className="form-label">Category</label>
-                            <select required className="form-select" onChange={handleCategory} aria-label="Default select example">
-                                <option selected>Select a category</option>
-                                {categories && categories.map((category) => (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="submit-button">
-                            <button type="submit" className="btn btn-primary">Save Product</button>
-                        </div>
-
-
-                    </form>
-                </div>
-            </div>
-            </div>
             </div>
         </>
     );
