@@ -9,7 +9,7 @@ const Navbar = () => {
 
 
     const getCategories = async () => {
-        const response = await axios.get(`http://localhost:8080/categories`);
+        const response = await axios.get(`${process.env.POS_BACKEND_URL}/categories`);
         setCategories(response.data);
         console.log(response.data);
     };
