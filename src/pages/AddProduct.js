@@ -6,10 +6,10 @@ const AddProduct = () => {
     const [categories, setCategories] = useState(null);
     const [products, setProducts] = useState([]);
 
-    const [name, setName] = useState(null);
-    const [price, setPrice] = useState(null);
-    const [qty, setQty] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [qty, setQty] = useState('');
+    const [categoryId, setCategoryId] = useState('');
 
     const handleName = (event) => {
         setName(event.target.value);
@@ -46,6 +46,11 @@ const AddProduct = () => {
             });
             setProducts([...products, response.data]);
             console.log(response.data);
+            //reset form details
+            setName('');
+            setPrice('');
+            setQty('');
+            setCategoryId('');
         } catch (error) {
             console.log(error);
         }
