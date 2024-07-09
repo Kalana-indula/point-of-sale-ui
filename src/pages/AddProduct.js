@@ -38,7 +38,7 @@ const AddProduct = () => {
         };
 
         try {
-            const response = await axios.post(`http://localhost:8080/products`, data, {
+            const response = await axios.post(`${process.env.POS_BACKEND_URL}/products`, data, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ const AddProduct = () => {
     }, []);
 
     const getCategories = async () => {
-        const response = await axios.get(`http://localhost:8080/categories`);
+        const response = await axios.get(`${process.env.POS_BACKEND_URL}/categories`);
         console.log(response.data);
         setCategories(response.data);
     }
