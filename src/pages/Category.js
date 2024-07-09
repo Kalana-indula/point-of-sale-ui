@@ -15,13 +15,13 @@ const Category = () => {
     }, [id]);
 
     const getCategoryById = async () => {
-        const response = await axios.get(`http://localhost:8080/categories/${id}`);
+        const response = await axios.get(`${process.env.POS_BACKEND_URL}/categories/${id}`);
         console.log(response.data);
         setCategory(response.data);
     }
 
     const getProductsByCategory = async () => {
-        const response = await axios.get(`http://localhost:8080/categories/${id}/products`);
+        const response = await axios.get(`${process.env.POS_BACKEND_URL}/products`);
         console.log(response.data);
         setProducts(response.data);
     }
