@@ -6,10 +6,10 @@ const AddProduct = () => {
     const [categories, setCategories] = useState(null);
     const [products, setProducts] = useState([]);
 
-    const [name, setName] = useState(null);
-    const [price, setPrice] = useState(null);
-    const [qty, setQty] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [qty, setQty] = useState('');
+    const [categoryId, setCategoryId] = useState('');
 
     const handleName = (event) => {
         setName(event.target.value);
@@ -46,6 +46,11 @@ const AddProduct = () => {
             });
             setProducts([...products, response.data]);
             console.log(response.data);
+            //restetting after adding
+            setName('');
+            setPrice('');
+            setQty('');
+            setCategoryId('');
         } catch (error) {
             console.log(error);
         }
@@ -74,15 +79,15 @@ const AddProduct = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label for="formGroupExampleInput" className="form-label">Product Name</label>
-                            <input type="text" required className="form-control" onChange={handleName} placeholder="Enter product name" />
+                            <input type="text" required className="form-control" onChange={handleName} value={name} placeholder="Enter product name" />
                         </div>
                         <div className="mb-3">
                             <label for="formGroupExampleInput2" className="form-label">Price</label>
-                            <input type="text" required className="form-control" onChange={handlePrice} placeholder="Enter product price" />
+                            <input type="text" required className="form-control" onChange={handlePrice} value={price} placeholder="Enter product price" />
                         </div>
                         <div className="mb-3">
                             <label for="formGroupExampleInput" className="form-label">Quantity</label>
-                            <input type="text" required className="form-control" onChange={handleQty} placeholder="Enter product quantity" />
+                            <input type="text" required className="form-control" onChange={handleQty} value={qty} placeholder="Enter product quantity" />
                         </div>
                         <div className="drop-down">
                             <label for="formGroupExampleInput" className="form-label">Category</label>
