@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 const Category = () => {
 
@@ -9,21 +9,37 @@ const Category = () => {
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState(null);
 
+    const navigate=useNavigate();
+
     useEffect(() => {
         getCategoryById();
         getProductsByCategory();
     }, [id]);
 
     const getCategoryById = async () => {
-        const response = await axios.get(`http://localhost:8080/categories/${id}`);
-        console.log(response.data);
-        setCategory(response.data);
+        try{
+            const response = await axios.get(`http://localhost:8080/categories/${id}`);
+            console.log(response.data);
+            setCategory(response.data);
+        }catch (error){
+            if(error.response.status===401){
+                navigate("/login");
+            }
+        }
+
     }
 
     const getProductsByCategory = async () => {
-        const response = await axios.get(`http://localhost:8080/categories/${id}/products`);
-        console.log(response.data);
-        setProducts(response.data);
+        try{
+            const response = await axios.get(`http://localhost:8080/categories/${id}/products`);
+            console.log(response.data);
+            setProducts(response.data);
+        }catch (error){
+            if(error.response.status===401){
+                navigate("/login");
+            }
+        }
+
     }
 
 

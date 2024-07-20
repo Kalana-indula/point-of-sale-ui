@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const Navbar = () => {
 
     const [categories, setCategories] = useState(null);
 
+    const navigate=useNavigate();
 
     const getCategories = async () => {
         const response = await axios.get(`http://localhost:8080/categories`);
@@ -18,11 +19,16 @@ const Navbar = () => {
         getCategories();
     }, []);
 
+    const handleLogout=()=>{
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
                 <div className="container-fluid">
-                <Link className="navbar-brand" to="/">POS</Link>
+                <Link className="navbar-brand" to="/">E-Shop</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -34,6 +40,10 @@ const Navbar = () => {
 
                            <Link className="nav-link" to={`/addproduct`}>Add Products</Link>
                            <Link className="nav-link" to={`/checkout`}>Checkout</Link>
+
+                            <li className="nav-item">
+                                <button className="btn btn-secondary" onClick={handleLogout}>Logout</button>
+                            </li>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Products = () => {
 
     const [products, setProducts] = useState(null);
 
+    const navigate=useNavigate();
+
     const getProducts = async () => {
-        const response = await axios.get(`http://localhost:8080/products`);
-        console.log(response.data);
-        setProducts(response.data);
+        try{
+            const response = await axios.get(`http://localhost:8080/products`);
+            // console.log(response.data);
+            setProducts(response.data);
+        }catch (error){
+            if(error.response.status===401){
+                navigate("/login");
+            }
+        }
     }
 
     useEffect(() => {

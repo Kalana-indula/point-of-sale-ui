@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Await, useParams } from "react-router-dom";
+import {Await, useNavigate, useParams} from "react-router-dom";
 import { CartContext } from "./CreateContext";
 
 
@@ -10,12 +10,22 @@ const SingleProduct = () => {
 
     const [product, setProduct] = useState(null);
 
+    const navigate=useNavigate();
+
     const {addToCart}=useContext(CartContext);
 
+
     const getProductById = async () => {
-        const response = await axios.get(`http://localhost:8080/products/${id}`);
-        setProduct(response.data);
-        console.log(response.data);
+        try{
+            const response = await axios.get(`http://localhost:8080/products/${id}`);
+            setProduct(response.data);
+            console.log(response.data);
+        }catch (error){
+            if(error.response.status===401){
+                navigate("/login");
+            }
+        }
+
     }
 
     useEffect(() => {
